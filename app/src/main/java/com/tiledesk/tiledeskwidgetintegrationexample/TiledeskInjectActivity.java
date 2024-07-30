@@ -19,8 +19,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-public class TiledeskActivity extends AppCompatActivity {
-
+public class TiledeskInjectActivity extends AppCompatActivity {
 
     public static final int REQUEST_SELECT_FILE = 100;
     public ValueCallback<Uri[]> uploadMessage;
@@ -28,15 +27,13 @@ public class TiledeskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tiledesk);
-
-        Log.d("[TiledeskActivity]", "TiledeskActivity OnCreate called");
+        setContentView(R.layout.activity_tiledeskinject);
 
         WebView myWebView = (WebView) findViewById(R.id.tiledesk);
         myWebView.setWebChromeClient(new FileChooserWebChromeClient(this) {
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-                Log.d("TiledeskActivity", consoleMessage.message() + " -- From line "
+                Log.d("TiledeskInjectActivity", consoleMessage.message() + " -- From line "
                         + consoleMessage.lineNumber() + " of "
                         + consoleMessage.sourceId());
                 return super.onConsoleMessage(consoleMessage);
@@ -56,8 +53,8 @@ public class TiledeskActivity extends AppCompatActivity {
 
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
-        //Inject widget load URL
-        myWebView.loadUrl("https://widget.tiledesk.com/v6/assets/twp/blank.html?tiledesk_projectid=63a075485f117f0013541e32&tiledesk_fullscreenMode=true&tiledesk_hideHeaderCloseButton=true&tiledesk_open=true");
+        //Inject widget HTML script
+        myWebView.loadUrl("file:///android_asset/index.html");
 
     }
 
@@ -77,7 +74,7 @@ public class TiledeskActivity extends AppCompatActivity {
 
         private Activity myActivity;
 
-        public FileChooserWebChromeClient(TiledeskActivity myActivity) {
+        public FileChooserWebChromeClient(TiledeskInjectActivity myActivity) {
             this.myActivity = myActivity;
         }
 
@@ -96,5 +93,4 @@ public class TiledeskActivity extends AppCompatActivity {
             return true;
         }
     }
-
 }

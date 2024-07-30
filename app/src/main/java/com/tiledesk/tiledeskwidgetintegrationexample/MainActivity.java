@@ -15,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickBtn(View v)
-    {
-        startActivity(new Intent(this, TiledeskActivity.class));
+    public void onClickBtn(View v){
+        v.getContext().startActivity(new Intent(v.getContext(), TiledeskActivity.class));
+    }
+    public void onClickInject(View v){
+        v.getContext().startActivity(new Intent(v.getContext(), TiledeskInjectActivity.class));
     }
 }

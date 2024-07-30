@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tiledesk.tiledeskwidgetintegrationexample">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,13 +8,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/tiledesk_v14"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/tiledesk_v14"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TiledeskActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".TiledeskActivity" tools:ignore="Instantiatable"></activity>
+        <activity android:name=".TiledeskInjectActivity" tools:ignore="Instantiatable"></activity>
+        <activity android:name=".MainActivity"
+            android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
